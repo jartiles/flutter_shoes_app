@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_shoes_app/models/shoe_model.dart';
+import 'package:flutter_shoes_app/helpers/shoes_lists.dart';
 
 class ShoesProvider extends ChangeNotifier {
   bool isLoading = false;
+  bool isLoadingArrivals = false;
   //- Shoes
   final String _key = 'YOUR-TOKEN';
   final String _host = 'shoes-collections.p.rapidapi.com';
@@ -14,7 +16,12 @@ class ShoesProvider extends ChangeNotifier {
   List<ShoeModel> shoesList = [];
   List<ShoeModel> newArrivals = [];
   //- Category
-  String _category = 'Women';
+  String _category = 'Men';
+
+  ShoesProvider() {
+    getShoes(_brand);
+    getNewArrivals();
+  }
 
   get getCategory => _category;
 
@@ -32,10 +39,21 @@ class ShoesProvider extends ChangeNotifier {
 
   set setBrand(String value) {
     _brand = value;
+    getShoes(value);
     isLoading = true;
     notifyListeners();
     _delayLoading();
   }
+
+  String _brandRoute = 'assets/nike.png';
+
+  get getBrandRoute => _brandRoute;
+
+  set setBrandRoute(String value) {
+    _brandRoute = value;
+  }
+
+  //- Functions
 
   _delayLoading() {
     Future.delayed(const Duration(seconds: 3), () {
@@ -44,30 +62,14 @@ class ShoesProvider extends ChangeNotifier {
     });
   }
 
-  ShoesProvider() {
-    getShoes();
-    getNewArrivals();
-  }
-
-  Future getShoes() async {
-    isLoading = true;
-    notifyListeners();
-    final url = Uri.https(_baseUrl, 'shoes');
-    final response = await http.get(
-      url,
-      headers: {'X-RapidAPI-Key': _key, 'X-RapidAPI-Host': _host},
-    );
-    final responseBody = json.decode(response.body);
-    if (response.statusCode == 200) {
-      for (final Map<String, dynamic> res in responseBody) {
-        shoesList.add(ShoeModel.fromMap(res));
-      }
-    }
-    isLoading = false;
-    notifyListeners();
+  getShoes(String brand) {
+    shoesList.clear();
+    shoesList = [...?shoes[brand]];
   }
 
   Future getNewArrivals() async {
+    isLoadingArrivals = true;
+    notifyListeners();
     final url = Uri.https(_baseUrl, 'shoes');
     final response = await http.get(
       url,
@@ -78,7 +80,8 @@ class ShoesProvider extends ChangeNotifier {
       for (final Map<String, dynamic> res in responseBody) {
         newArrivals.add(ShoeModel.fromMap(res));
       }
-      notifyListeners();
     }
+    isLoadingArrivals = false;
+    notifyListeners();
   }
 }

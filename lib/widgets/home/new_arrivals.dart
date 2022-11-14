@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shoes_app/models/shoe_model.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
 
 import 'package:flutter_shoes_app/providers/shoes_provider.dart';
+import 'package:flutter_shoes_app/widgets/shoe_card.dart';
 
 class NewArrivals extends StatelessWidget {
   const NewArrivals({Key? key}) : super(key: key);
@@ -12,10 +12,10 @@ class NewArrivals extends StatelessWidget {
   Widget build(BuildContext context) {
     final shoesProvider = Provider.of<ShoesProvider>(context);
     final arrivalsList = shoesProvider.newArrivals;
-    final isLoading = shoesProvider.isLoading;
+    final isLoading = shoesProvider.isLoadingArrivals;
 
     return Container(
-      height: 250,
+      height: 300,
       margin: const EdgeInsets.symmetric(vertical: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -38,55 +38,10 @@ class NewArrivals extends StatelessWidget {
                         color: Colors.red,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                       ))
-                    : _Arrival(shoe: arrivalsList[index]);
+                    : ShoeCard(shoe: arrivalsList[index], fromArrivals: true);
               },
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _Arrival extends StatelessWidget {
-  const _Arrival({Key? key, required this.shoe}) : super(key: key);
-  final ShoeModel shoe;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      width: 150,
-      decoration: BoxDecoration(
-        color: const Color(0xfff6f6f6),
-        border: Border.all(color: const Color(0xFFe53963), width: 3),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Image(
-            image: NetworkImage(shoe.image),
-            height: 120,
-            fit: BoxFit.contain,
-          ),
-          Expanded(
-            child: Container(
-              color: const Color(0xFFe53963),
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-              child: Text(
-                shoe.name,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

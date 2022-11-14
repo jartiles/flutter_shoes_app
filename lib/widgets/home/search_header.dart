@@ -40,7 +40,6 @@ class SearchHeader extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(vertical: 10),
       hintText: 'Search',
       prefixIcon: const Icon(Icons.search),
-      focusColor: Colors.red,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: const BorderSide(

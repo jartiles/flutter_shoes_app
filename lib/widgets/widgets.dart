@@ -1,5 +1,11 @@
+export 'package:flutter_shoes_app/widgets/shoe_card.dart';
 // Home
 export 'package:flutter_shoes_app/widgets/home/search_header.dart';
 export 'package:flutter_shoes_app/widgets/home/brand_list.dart';
 export 'package:flutter_shoes_app/widgets/home/category_list.dart';
 export 'package:flutter_shoes_app/widgets/home/new_arrivals.dart';
+//- Detail
+export 'package:flutter_shoes_app/widgets/detail/custom_appbar.dart';
+export 'package:flutter_shoes_app/widgets/detail/sizes_shoes.dart';
+export 'package:flutter_shoes_app/widgets/detail/color_shoes.dart';
+export 'package:flutter_shoes_app/widgets/detail/add_btn.dart';

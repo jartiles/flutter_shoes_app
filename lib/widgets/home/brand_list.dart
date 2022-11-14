@@ -17,9 +17,7 @@ class BrandList extends StatelessWidget {
   static final List<Brand> brands = [
     Brand(brandName: 'Nike', brandImageRoute: 'assets/nike.png'),
     Brand(brandName: 'Adidas', brandImageRoute: 'assets/adidas.png'),
-    Brand(brandName: 'NB', brandImageRoute: 'assets/new-balance.png'),
     Brand(brandName: 'Puma', brandImageRoute: 'assets/puma.png'),
-    Brand(brandName: 'Umbro', brandImageRoute: 'assets/umbro.png'),
   ];
 
   @override
@@ -61,7 +59,10 @@ class _UnselectedBrand extends StatelessWidget {
   Widget build(BuildContext context) {
     final shoesProvider = Provider.of<ShoesProvider>(context);
     return GestureDetector(
-      onTap: () => shoesProvider.setBrand = brand.brandName,
+      onTap: () {
+        shoesProvider.setBrand = brand.brandName;
+        shoesProvider.setBrandRoute = brand.brandImageRoute;
+      },
       child: Container(
         width: 60,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
@@ -131,19 +132,3 @@ class _SelectedBrand extends StatelessWidget {
     );
   }
 }
-
-
-/* Card(
-        elevation: 5,
-        shape: const CircleBorder(),
-        child: Container(
-          height: 80,
-          width: 60,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(brand.brandImageRoute),
-              scale: 1.2,
-            ),
-          ),
-        ),
-      ) */
