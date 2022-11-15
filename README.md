@@ -40,7 +40,7 @@ Then you must write your token in the line 'YOUR-TOKEN'. Located in the lib/prov
     </div>
     <div style="margin: 0 10px">
         <p style="font-size: 16px; font-weight: bold;">Select Brand</p>
-        <img  width="300" height="650" src="https://res.cloudinary.com/dinz56p67/image/upload/v1668466725/flutter%20shoes%20app/2-brand_select_dbhxpr.gif">
+        <img  width="300" height="650" src="https://res.cloudinary.com/dinz56p67/image/upload/v1668473907/flutter%20shoes%20app/2-brand_select_tbi0op.gif">
     </div>
     <div style="margin: 0 10px">
         <p style="font-size: 16px; font-weight: bold;">Detail Screen</p>
@@ -48,6 +48,6 @@ Then you must write your token in the line 'YOUR-TOKEN'. Located in the lib/prov
     </div>
     <div style="margin: 0 10px">
         <p style="font-size: 16px; font-weight: bold;">Detail Hero Animation</p>
-        <img  width="300" height="650" src="https://res.cloudinary.com/dinz56p67/image/upload/v1668466466/flutter%20shoes%20app/4-detail_back_i8kwts.gif">
+        <img  width="300" height="650" src="https://res.cloudinary.com/dinz56p67/image/upload/v1668473988/flutter%20shoes%20app/4-detail_back_ghbrxo.gif">
     </div>
 </div>
